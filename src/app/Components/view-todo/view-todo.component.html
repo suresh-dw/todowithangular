@@ -1,0 +1,43 @@
+<table
+  *ngIf="todos.length > 0; else elseBlock"
+  class="w-full p-8 gap-y-2 shadow-md px-2 py-1"
+>
+  <tr class="shadow-md mx-2 my-1 px-2 py-1 text-violet-600">
+    <th class="px-2 py-1">Sr.No</th>
+    <th class="px-2 py-1">Todo Name</th>
+    <th class="px-2 py-1">Assigned To</th>
+    <th class="px-2 py-1">Description</th>
+    <th class="px-2 py-1">Priority</th>
+    <th class="px-2 py-1">Target</th>
+    <th class="px-2 py-1">Actions</th>
+  </tr>
+  <tr
+    *ngFor="let todo of todos"
+    class="text-center mt-5 pt-5 text-violet-500 font-semibold"
+  >
+    <td class="px-2 py-1">{{ todo.srno }}.</td>
+    <td class="px-2 py-1">{{ todo.todoname }}</td>
+    <td class="px-2 py-1">{{ todo.assign_to }}</td>
+    <td class="px-2 py-1">{{ todo.description }}</td>
+    <td class="px-2 py-1">{{ todo.priority }}</td>
+    <td class="px-2 py-1">{{ todo.date }}</td>
+    <td class="px-2 py-1">
+      <button
+        class="text-sm font-bold text-white bg-violet-600 px-2 py-1 rounded-lg"
+        (click)="deleteTodo(todo)"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
+</table>
+<ng-template #elseBlock>
+  <h3 class="text-2xl text-violet-500 font-bold">
+    No Todos For You... Go to add new Todo
+  </h3>
+  <p class="text-violet-500">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores quia
+    molestiae veritatis magni dolorum, iste est recusandae doloremque incidunt
+    quibusdam quam iure provident hic eos, et eligendi! Ea, nihil suscipit?
+  </p>
+</ng-template>

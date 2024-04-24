@@ -1,0 +1,155 @@
+<div class="flex justify-center mb-8 mt-4">
+  <h3
+    class="text-violet-600 text-2xl text-center font-bold px-4 py-2 shadow-lg rounded-md"
+  >
+    Add New Todo
+  </h3>
+</div>
+<div class="flex justify-center">
+  <form
+    class="flex flex-col gap-y-4 w-1/2 justify-start shadow-md px-4 py-2"
+    [formGroup]="Todo"
+    (submit)="onSubmit()"
+  >
+    <div class="w-full flex flex-col mb-4">
+      <label for="todoname" class="mx-4 font-bold text-sm text-violet-500"
+        >Enter Todo Name :</label
+      >
+      <input
+        type="text"
+        placeholder="Enter Todo Name"
+        class="shadow-md placeholder:px-2 outline-none grow py-1 px-2 text-violet-600 font-bold rounded-md"
+        name="todoname"
+        id="todoname"
+        formControlName="todoname"
+      />
+      <div
+        *ngIf="Todo.get('todoname')?.touched && Todo.get('todoname')?.invalid"
+      >
+        <small
+          *ngIf="checkError('todoname', 'required')"
+          class="text-red-500 px-2"
+          >*Todoname is required</small
+        >
+        <small
+          class="text-red-500"
+          *ngIf="
+            checkError('todoname', 'minlength') &&
+            !checkError('todoname', 'pattern')
+          "
+          >*Todoname must be of 10 characters</small
+        >
+        <small
+          *ngIf="checkError('todoname', 'pattern')
+          "
+          class="text-red-500"
+          >*Invalid Todo name</small
+        >
+      </div>
+    </div>
+    <div class="w-full flex flex-col mb-4">
+      <label for="assign_to" class="mx-4 font-bold text-sm text-violet-500"
+        >Assign This Todo To :</label
+      >
+      <input
+        type="text"
+        placeholder="Assign To"
+        name="assign_to"
+        id="assign_to"
+        class="shadow-md placeholder:px-2 outline-none grow py-1 px-2 text-violet-600 font-bold rounded-md"
+        formControlName="assign_to"
+      />
+      <div
+        *ngIf="Todo.get('assign_to')?.touched && Todo.get('assign_to')?.invalid"
+      >
+        <small
+          *ngIf="Todo.get('assign_to')?.hasError('required')"
+          class="text-red-500 px-2"
+          >*Assign Todo is required</small
+        >
+        <small
+          class="text-red-500"
+          *ngIf="Todo.get('assign_to')?.hasError('pattern')"
+          >*Invalid Assigned name</small
+        >
+      </div>
+    </div>
+    <div class="w-full flex flex-col mb-4">
+      <label for="description" class="mx-4 font-bold text-sm text-violet-500"
+        >Enter Todo's Description :</label
+      >
+      <textarea
+        placeholder="Enter Your Todo Description"
+        name="description"
+        id="description"
+        class="shadow-md placeholder:px-2 outline-none grow py-1 px-2 text-violet-600 font-bold rounded-md"
+        formControlName="description"
+      ></textarea>
+      <div
+        *ngIf="
+          Todo.get('description')?.invalid && Todo.get('description')?.touched
+        "
+      >
+        <small
+          class="text-red-500 px-2"
+          *ngIf="Todo.get('description')?.hasError('required')"
+          >*Todo's description is required</small
+        >
+      </div>
+    </div>
+    <div class="shadow-md px-2 py-1 rounded-md">
+      <p class="text-violet-500 font-bold px-2 mb-1">Set Priotity :</p>
+      <div class="w-full flex gap-x-4 mb-4">
+        <label for="High" class="mx-4 font-bold text-sm text-violet-500"
+          >High :</label
+        >
+        <input
+          type="radio"
+          name="priority"
+          value="High"
+          id="High"
+          formControlName="priority"
+        />
+        <label for="Medium" class="mx-4 font-bold text-sm text-violet-500"
+          >Medium :</label
+        >
+        <input
+          type="radio"
+          name="priority"
+          value="Medium"
+          id="Medium"
+          formControlName="priority"
+        />
+        <label for="Low" class="mx-4 font-bold text-sm text-violet-500"
+          >Low :</label
+        >
+        <input
+          type="radio"
+          name="priority"
+          value="Low"
+          id="Low"
+          formControlName="priority"
+        />
+      </div>
+    </div>
+    <label for="date" class="mx-4 font-bold text-sm text-violet-500"
+      >Todo's Target Date :</label
+    >
+    <input
+      type="date"
+      placeholder="Select Target Date"
+      name="date"
+      id="date"
+      class="shadow-md placeholder:px-2 outline-none grow py-1 px-2 font-bold text-violet-600 rounded-md mb-4"
+      formControlName="date"
+    />
+    <button
+      type="submit"
+      class="text-white font-bold bg-violet-600 px-2 py-1 rounded-lg mt-4"
+      [disabled]="Todo.invalid"
+      [class.bg-violet-300]="Todo.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
