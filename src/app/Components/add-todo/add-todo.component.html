@@ -39,10 +39,7 @@
           "
           >*Todoname must be of 10 characters</small
         >
-        <small
-          *ngIf="checkError('todoname', 'pattern')
-          "
-          class="text-red-500"
+        <small *ngIf="checkError('todoname', 'pattern')" class="text-red-500"
           >*Invalid Todo name</small
         >
       </div>
@@ -147,7 +144,7 @@
       type="submit"
       class="text-white font-bold bg-violet-600 px-2 py-1 rounded-lg mt-4"
       [disabled]="Todo.invalid"
-      [class.bg-violet-300]="Todo.invalid"
+      [class.bg-violet-200]="Todo.invalid"
     >
       Submit
     </button>
